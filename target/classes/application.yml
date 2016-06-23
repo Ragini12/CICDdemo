@@ -1,0 +1,40 @@
+server.servlet-path: "/*"
+server.contextPath: "/presalespdealtacker"
+server.port: 8089
+
+spring:
+ profiles.active: production
+---
+spring:
+  profiles: test
+  datasource:
+    url: "jdbc:h2:mem:dealtrackerdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL"
+  jpa:
+    database-platform: "org.hibernate.dialect.MySQLDialect"
+    hibernate.ddl-auto: create
+    hibernate.hbm2ddl.auto: create
+    show-sql: true
+  endpoints:
+    enabled: true
+    health.enabled: true
+---
+spring:
+  profiles: production
+  datasource:
+    url: "jdbc:mysql://localhost:3306/test"
+    username: root
+    password: 
+    driverClassName: "com.mysql.jdbc.Driver"
+  jpa:
+    database-platform: "org.hibernate.dialect.MySQLDialect"
+    hibernate.ddl-auto: update
+    hibernate.hbm2ddl.auto: create
+    show-sql: true
+  endpoints:
+    enabled: false
+    health.enabled: true
+---
+
+mailfromId: shuklaragini5@gmail.com
+mail.smtp.host: localhost
+mail.smtp.port: 25
